@@ -10,7 +10,7 @@ from langchain_community.document_loaders import PyPDFLoader, TextLoader
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from qdrant_client.models import PointStruct
 import uuid
-import os
+from config import get_llm
 
 app = FastAPI()
 
@@ -26,17 +26,6 @@ QDRANT_URL = "http://localhost:6333"
 COLLECTION_NAME = "documents"
 OLLAMA_EMBED_MODEL = "nomic-embed-text"
 UPLOAD_DIR = Path("data")
-
-def get_llm():
-    environment = os.getenv("ENVIRONMENT", "local")
-    openai_key = os.getenv("OPENAI_API_KEY", "")
-    
-    if environment == "production" and openai_key:
-        from langchain_community.llms import OpenAI
-        return OpenAI(api_key=openai_key, model="gpt-3.5-turbo-instruct")
-    else:
-        from langchain_community.llms import Ollama
-        return Ollama(model="llama3.2", base_url="http://localhost:11434")
 
 class QueryRequest(BaseModel):
     question: str
