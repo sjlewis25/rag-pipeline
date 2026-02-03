@@ -29,6 +29,20 @@ FastAPI Backend (port 8000)
 Document flow: Upload → Chunk → Embed → Store in Qdrant
 Query flow: Question → Embed → Search Qdrant → Retrieve context → Generate answer with LLM
 
+## Screenshots
+
+**Main Interface**
+![RAG UI](screenshots/ui-main.png)
+*Clean two-column layout with document upload and question interface*
+
+**Document Upload Success**
+![Upload Success](screenshots/upload-success.png)
+*Document processed and chunked into vector embeddings*
+
+**Query Results with Source Citations**
+![Query Answer](screenshots/query-answer.png)
+*AI-generated answer with relevance scores and source references*
+
 ## Technology Stack
 
 **Vector Database**
